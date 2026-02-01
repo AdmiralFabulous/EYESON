@@ -157,7 +157,7 @@ async def update_manual_measurement(
 @router.get("/measurements/{measurement_id}/export")
 async def export_measurements(
     measurement_id: str,
-    format: str = Query("json", regex="^(json|csv|pdf)$"),
+    format: str = Query("json", pattern="^(json|csv|pdf)$"),
     user = Depends(get_current_active_user)
 ):
     """

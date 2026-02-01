@@ -57,7 +57,7 @@ class SessionCreateRequest(BaseModel):
     """Create scan session request."""
     user_id: Optional[str] = None
     scan_mode: ScanMode = Field(default=ScanMode.VIDEO)
-    language: str = Field(default="en", regex="^[a-z]{2}$")
+    language: str = Field(default="en", pattern="^[a-z]{2}$")
     device_info: Optional[dict] = None
 
 

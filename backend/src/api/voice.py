@@ -8,7 +8,7 @@ Provides voice guidance for the 90-second body scan experience.
 import logging
 from typing import Optional
 
-from fastapi import APIRouter, HTTPException, Query, Response, status
+from fastapi import APIRouter, HTTPException, Path as FastApiPath, Query, Response, status
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel, Field
 
@@ -163,7 +163,7 @@ async def synthesize_speech_stream(request: TTSSynthesizeRequest):
 
 @router.get("/voice/prompts/{language}", response_model=VoicePromptLibrary)
 async def get_voice_prompts(
-    language: str = Field(..., regex="^[a-z]{2}$"),
+    language: str = FastApiPath(..., pattern="^[a-z]{2}$"),
     section: Optional[str] = Query(None, description="Filter by section (welcome, capture, etc.)")
 ):
     """
